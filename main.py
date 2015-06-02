@@ -1,15 +1,31 @@
 from world import *
 from nn import *
 
+def error(s1, s2):
+    e = 0
+    for i in range(len(s1)):
+        e = e + abs(s1[i] - s2[i])
+    return e
 
 # create world
 w = World()
 
+# create initial state
+s = w.getStartState()
+
 # create nn
-nn = NN(
+nn = NN(len(s), len(s), len(s))
+
+# get new state from nn
+s1 = nn.update(s) # Predicted next state
+s2 = w.iterate(s) # Next state 
+print s1
+print s2
+print error(s2, s1)
+
+
 # create evaluator
 
-# create initial state
 
 # iterate state N times (print error) and save in evaluator
 
